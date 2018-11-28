@@ -1,13 +1,20 @@
 
 public class MapaDispersao<K,T> {
 	private ListaEncadeada<T>[] tabela;
+	private int quantidade;
 	
 	public MapaDispersao (int quantidade) {
-		tabela = (ListaEncadeada<T>[]) new Object[quantidade];
+		this.quantidade = getProximoPrimo(quantidade);
+		tabela = new ListaEncadeada[this.quantidade];
+	}
+	
+	public int getProximoPrimo(int quantidade) {
+		return quantidade;
 	}
 
 	public int calcularHash(K chave) {
 		int hashCode = chave.hashCode();
+		
 		return hashCode;
 	}
 	

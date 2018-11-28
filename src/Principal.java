@@ -7,7 +7,7 @@ public class Principal {
 		v.setModelo("Hyundai Creta");
 		v.setAno(2017);
 		v.setProprietario("João da Silva");
-		MapaDispersao<String,Veiculo> mp = new MapaDispersao(2000);
+		MapaDispersao<String,Veiculo> mp = new MapaDispersao<String,Veiculo>(2000);
 		mp.inserir(v.getPlaca(), v);
 	}
 
