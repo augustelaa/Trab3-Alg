@@ -1,18 +1,16 @@
-
-
 /**
  *
  * @author marcel
  */
-public interface Lista {
+public interface Lista<T> {
 
-    Lista concatena(Lista outra);
+    Lista<T> concatena(Lista<T> outra);
 
-    String consulta(int p);
+    T consulta(int p);
 
-    Lista copia();
+    Lista<T> copia();
 
-    Lista divide();
+    Lista<T> divide();
 
     boolean estaCheia();
 
@@ -22,12 +20,12 @@ public interface Lista {
 
     String imprime();
 
-    void insere(String x);
+    void insere(T x);
 
-    void insere(String x, int p);
+    void insere(T x, int p);
 
-    int localiza(String x);
+    int localiza(T x);
 
-    String retira(int p);
+    T retira(int p);
     
 }

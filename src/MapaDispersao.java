@@ -5,12 +5,14 @@ public class MapaDispersao<K,T> {
 	public MapaDispersao (int quantidade) {
 		tabela = (ListaEncadeada<T>[]) new Object[quantidade];
 	}
-	
+
 	public int calcularHash(K chave) {
-		return 0;
+		int hashCode = chave.hashCode();
+		return hashCode;
 	}
 	
 	public boolean inserir(K chave, T valor) {
+		int indice = calcularHash(chave);
 		return false;
 	}
 	
