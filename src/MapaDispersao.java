@@ -1,6 +1,7 @@
 
 public class MapaDispersao<K,T> {
 	private ListaEncadeada<T>[] tabela;
+	private int quantidadaUso = 0;
 	private int quantidade;
 	
 	public MapaDispersao (int quantidade) {
@@ -13,25 +14,53 @@ public class MapaDispersao<K,T> {
 	}
 
 	public int calcularHash(K chave) {
-		int hashCode = chave.hashCode();
-		
-		return hashCode;
+		int hashCode = Math.abs(chave.hashCode());
+		int hash = hashCode % quantidade;
+		return hash;
 	}
 	
 	public boolean inserir(K chave, T valor) {
+		if (this.buscar(chave) != null) {
+			throw new IllegalArgumentException("Item ja cadastrado.");
+		}
 		int indice = calcularHash(chave);
-		return false;
+		if (tabela[indice] == null) {
+			ListaEncadeada<T> lista = new ListaEncadeada<T>();
+			lista.insere(valor);
+			tabela[indice] = lista;
+		} else {
+			tabela[indice].insere(valor);
+		}
+		quantidadaUso++;
+		return true;
 	}
 	
 	public T remover(K chave) {
-		return null;
+		int indice = calcularHash(chave);
+		if (tabela[indice] == null) {
+			return null;
+		}
+		ListaEncadeada<T> itens = tabela[indice];
+		int posicaoLista = itens.localiza((T) chave);
+		T retorno = itens.consulta(posicaoLista);
+		if (retorno == null) {
+			return null;
+		}
+		itens.retira(posicaoLista);
+		quantidadaUso--;
+		return retorno;
 	}
 	
 	public T buscar(K chave) {
-		return null;
+		int indice = calcularHash(chave);
+		if (tabela[indice] == null) {
+			return null;
+		}
+		ListaEncadeada<T> itens = tabela[indice];	
+		return itens.consulta(itens.localiza((T) chave));
 	}
 	
 	public int quantosElementos() {
-		return 0;
+		return quantidadaUso;
 	}
 }

@@ -1,44 +1,70 @@
+/**
+ *
+ * @author Marcel
+ */
+public class Veiculo implements Comparable<String>{
 
-public class Veiculo {
-	private String placa;
-	private String modelo;
-	private int ano;
-	private String proprietario;
+    private String placa;
+    private String modelo;
+    private int ano;
+    private String proprietario;
 
-	public String getPlaca() {
-		return placa;
-	}
+    public Veiculo(String pl, String m, int a, String pr) {
+        this.placa = pl;
+        this.modelo = m;
+        this.ano = a;
+        this.proprietario = pr;
+    }
+    
+    public Veiculo() {
+    	
+    }
 
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
+    @Override
+    public String toString() {
+        return ("Veículo " + modelo + ",placa " + placa + ",ano " + ano + ", de " + proprietario+"\n");
+    }
 
-	public String getModelo() {
-		return modelo;
-	}
+    public String getPlaca() {
+        return placa;
+    }
 
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
 
-	public int getAno() {
-		return ano;
-	}
+    public String getModelo() {
+        return modelo;
+    }
 
-	public void setAno(int ano) {
-		this.ano = ano;
-	}
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
 
-	public String getProprietario() {
-		return proprietario;
-	}
+    public int getAno() {
+        return ano;
+    }
 
-	public void setProprietario(String proprietario) {
-		this.proprietario = proprietario;
-	}
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
 
-	@Override
-	public String toString() {
-		return null;
-	}
+    public String getProprietario() {
+        return proprietario;
+    }
+
+    public void setProprietario(String proprietario) {
+        this.proprietario = proprietario;
+    }
+
+    @Override
+    public int compareTo(String outro) {
+       return (this.getPlaca().compareTo(outro));
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (this.getPlaca().compareTo((String) obj)==0);
+    }
+
 }
